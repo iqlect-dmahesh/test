@@ -13,8 +13,8 @@ OBJECTSD=$(SOURCES:.cc=.od)
 BIN_DIR=bin
 S_BIN=$(BIN_DIR)/server
 C_BIN=$(BIN_DIR)/client
-S_EXECNAME=server
-C_EXECNAME=client
+S_EXECNAME=iqlect_time_server
+C_EXECNAME=iqlect_time_client
 
 all: $(SOURCES) $(OBJECTS)
 	$(GCC) $(OBJDIR)/server/*.o -o $(S_BIN)/$(S_EXECNAME)
