@@ -10,5 +10,5 @@ if ps ax | grep -v grep | grep ${SERVER_EXEC_NAME} > /dev/null
 then
   echo "${SERVER_EXEC_NAME} service running, everything is fine"
 else
-  ${SCRIPT_DIR}/${SERVER_EXEC_NAME} &
+  ${SCRIPT_DIR}/${SERVER_EXEC_NAME}
 fi

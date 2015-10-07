@@ -6,6 +6,8 @@
 #include <sys/types.h>
 #include <errno.h>
 #include <arpa/inet.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 // Custom headers
 #include <util.h>
@@ -95,6 +97,18 @@ main ()
 {
   if (fork() == 0) {
     std::cout << "Running by child .." << std::endl;
+    setsid();
+    chdir("/home/ubuntu/server/");
+    int fd = open("/dev/null", O_RDWR, 0);
+    if (fd != -1) {
+      dup2 (fd, STDIN_FILENO);
+      dup2 (fd, STDOUT_FILENO);
+      dup2 (fd, STDERR_FILENO);
+      if (fd > 2) {
+        close(fd);
+      }
+    }
+    umask(027);
     server sObj(INADDR_ANY, 24244);
     sObj.start();
   }
